@@ -33,8 +33,49 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        var bgGeo = window.plugins.backgroundGeoLocation;
         app.receivedEvent('deviceready');
-        alert("yay");
+
+        //we add this so the app asks for permission
+        window.navigator.geolocation.getCurrentPosition(function(location) {
+            console.log('Location from Phonegap');
+            alert("got current loc!");
+            alert(JSON.stringify(location));
+
+            var ios_callbackFn = function () {
+                alert("ios!!!");
+            };
+
+            var failureFn = function () {
+                alert("fail!!!");
+            };
+
+            bgGeo.configure(ios_callbackFn, failureFn, {
+                url: 'http://requestb.in/1bodkx21',
+                params: {
+                    auth_token: 'user_secret_auth_token',
+                    foo: 'bar'
+                },
+                headers: {
+                    "X-Foo": "BAR"
+                },
+                desiredAccuracy: 10,
+                stationaryRadius: 20,
+                distanceFilter: 30,
+                notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
+                notificationText: 'ENABLED', // <-- android only, customize the text of the notification
+                activityType: 'AutomotiveNavigation',
+                debug: false // <-- enable this hear sounds for background-geolocation life-cycle.
+            });
+
+            alert("bgGeo configured!");
+
+            bgGeo.start();
+            alert("bgGeo started!");
+
+        });
+
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
