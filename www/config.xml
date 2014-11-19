@@ -1,12 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.pixpy.tickstore" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>TickStore</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
+<widget
+    id="com.pixpy.tickstore"
+    version="0.1.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:gap="http://phonegap.com/ns/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>I Give It</name>
+  <description>
+    Stores Heatbeats Online for Later Processing
+  </description>
+  <author email="tickstore@pixpy.com" href="http://cordova.io">
+    KA
+  </author>
+  <content src="index.html" />
+  <access origin="*" />
+  <gap:platform name="android" />
+  <preference name="phonegap-version" value="3.6.3" />
+  <!-- Android SDK Version -->
+  <preference name="android-minSdkVersion" value="14" />
+  <preference name="orientation" value="portrait" />
+  <preference name="fullscreen" value="false" />
+  <preference name="target-device" value="handset" />
+  <preference name="disallowOverscroll" value="true" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="exit-on-suspend" value="false" />
+  <preference name="detect-data-types" value="false" />
+  <gap:plugin name="org.apache.cordova.device" />
+  <gap:plugin name="org.transistorsoft.cordova.background-geolocation" />
 </widget>
